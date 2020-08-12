@@ -7,7 +7,7 @@ import (
 )
 
 func index(c *fiber.Ctx) {
-	c.JSON(fiber.Map{"message": "Hello World"})
+	c.JSON(fiber.Map{"message": "Olá Mundo"})
 }
 
 func main() {
