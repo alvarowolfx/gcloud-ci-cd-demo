@@ -1,0 +1,26 @@
+name: cloud-run-clean-up
+
+on:
+  pull_request:
+    branches: [development]
+    types: [closed]
+
+jobs:
+  clean-deploy:
+    name: Clean Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "290.0.1"
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
+          project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
+
+      - name: Clean
+        run: |-
+          gcloud run delete "go-demo-${{ github.ref }}" \
+            --quiet \
+            --region "us-central1" \
+            --platform "managed"
