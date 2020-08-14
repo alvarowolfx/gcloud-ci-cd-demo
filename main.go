@@ -10,6 +10,10 @@ func index(c *fiber.Ctx) {
 	c.JSON(fiber.Map{"message": "Olá TDC 2020"})
 }
 
+func about(c *fiber.Ctx) {
+	c.JSON(fiber.Map{"message": "Um grande evento de desenvolvimento"})
+}
+
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -18,6 +22,7 @@ func main() {
 
 	app := fiber.New()
 	app.Get("/", index)
+	app.Get("/about", about)
 
 	app.Listen(port)
 }
