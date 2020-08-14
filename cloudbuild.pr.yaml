@@ -20,6 +20,8 @@ steps:
       - deploy
       - "$_SERVICE_NAME-$BRANCH_NAME"
       - "--platform=managed"
+      - "--allow-unauthenticated"
+      - "--max-instances=1"
       - "--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"
       - "--region=$_DEPLOY_REGION"
       - "--quiet"
