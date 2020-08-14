@@ -24,11 +24,6 @@ func TestGetIndex(t *testing.T) {
 		t.Errorf("expected status code %d, received %d", 200, res.StatusCode)
 	}
 
-	/*body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		t.Errorf("error getting request body: %s", err.Error())
-	}*/
-
 	decoder := json.NewDecoder(res.Body)
 	output := make(map[string]string)
 	err = decoder.Decode(&output)
@@ -37,7 +32,7 @@ func TestGetIndex(t *testing.T) {
 		t.Errorf("error decoding response body: %s", err.Error())
 	}
 
-	expected := "Hello World"
+	expected := "Olá Mundo"
 	if output["message"] != expected {
 		t.Errorf("index() = %s; want %s", expected, output["message"])
 	}
