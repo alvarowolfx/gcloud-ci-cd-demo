@@ -20,7 +20,7 @@ jobs:
 
       - name: Clean
         run: |-
-          gcloud run services delete "go-demo-${{ github.ref }}" \
+          gcloud run services delete "go-demo-${{ github.head_ref }}" \
             --quiet \
             --region "us-central1" \
             --platform "managed"
