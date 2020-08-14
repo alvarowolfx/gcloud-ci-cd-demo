@@ -32,7 +32,7 @@ func TestGetIndex(t *testing.T) {
 		t.Errorf("error decoding response body: %s", err.Error())
 	}
 
-	expected := "Olá Mundo"
+	expected := "Olá TDC 2020"
 	if output["message"] != expected {
 		t.Errorf("index() = %s; want %s", expected, output["message"])
 	}
