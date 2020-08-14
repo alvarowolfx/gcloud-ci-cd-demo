@@ -1,0 +1,37 @@
+steps:
+  - name: golang
+    args: ["go", "test", "./..."]
+  - name: gcr.io/k8s-skaffold/pack
+    args:
+      - build
+      - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"
+      - "--builder=gcr.io/buildpacks/builder:v1"
+      - "--path=."
+    id: Buildpack
+    entrypoint: pack
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"
+    id: Push
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args:
+      - run
+      - deploy
+      - "$_SERVICE_NAME-$BRANCH_NAME"
+      - "--platform=managed"
+      - "--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"
+      - "--region=$_DEPLOY_REGION"
+      - "--quiet"
+    id: Deploy
+    entrypoint: gcloud
+images:
+  - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _DEPLOY_REGION: us-central1
+  _GCR_HOSTNAME: us.gcr.io
+  _SERVICE_NAME: go-demo
+tags:
+  - go-demo
