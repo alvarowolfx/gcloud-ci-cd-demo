@@ -11,7 +11,7 @@ func index(c *fiber.Ctx) {
 }
 
 func about(c *fiber.Ctx) {
-	c.JSON(fiber.Map{"message": "Um grande evento de desenvolvimento"})
+	c.JSON(fiber.Map{"message": "Um grande evento online de desenvolvimento"})
 }
 
 func main() {
