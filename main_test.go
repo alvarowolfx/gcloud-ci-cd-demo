@@ -61,7 +61,7 @@ func TestGetAbout(t *testing.T) {
 		t.Errorf("error decoding response body: %s", err.Error())
 	}
 
-	expected := "Um evento online de desenvolvimento incrivel"
+	expected := "Um grande evento online de desenvolvimento"
 	if output["message"] != expected {
 		t.Errorf("about() = %s; want %s", expected, output["message"])
 	}
