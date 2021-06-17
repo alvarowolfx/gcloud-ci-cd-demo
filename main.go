@@ -7,11 +7,11 @@ import (
 )
 
 func index(c *fiber.Ctx) {
-	c.JSON(fiber.Map{"message": "Olá TDC 2020"})
+	c.JSON(fiber.Map{"message": "Cloud Summit Cerrado"})
 }
 
 func about(c *fiber.Ctx) {
-	c.JSON(fiber.Map{"message": "Um grande evento online de desenvolvimento"})
+	c.JSON(fiber.Map{"message": "Com a estratégia de nuvem certa, você pode ficar pronto para qualquer coisa"})
 }
 
 func main() {
