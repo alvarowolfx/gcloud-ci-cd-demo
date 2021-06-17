@@ -39,7 +39,7 @@ func TestGetIndex(t *testing.T) {
 		t.Errorf("error decoding response body: %s", err.Error())
 	}
 
-	expected := "Olá TDC 2020"
+	expected := "Cloud Summit Cerrado"
 	if output["message"] != expected {
 		t.Errorf("index() = %s; want %s", expected, output["message"])
 	}
@@ -61,7 +61,7 @@ func TestGetAbout(t *testing.T) {
 		t.Errorf("error decoding response body: %s", err.Error())
 	}
 
-	expected := "Um grande evento online de desenvolvimento"
+	expected := "Com a estratégia de nuvem certa, você pode ficar pronto para qualquer coisa"
 	if output["message"] != expected {
 		t.Errorf("about() = %s; want %s", expected, output["message"])
 	}
